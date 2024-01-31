@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataAccess.Concrete;
 using DataAccess.Concrete.InMemory;
+using DataAccess.Concrete.EntityFramework;
 
 namespace ConsoleUI
 {
@@ -13,12 +14,18 @@ namespace ConsoleUI
     {
         static void Main(string[] args) 
         {
-            ProductManager productManager = new ProductManager(new InMemoryProductDal());
-            foreach(var product in productManager.GetAll())
+            ProductManager productManager1 = new ProductManager(new InMemoryProductDal());
+            foreach(var product in productManager1.GetAll())
             {
                 Console.WriteLine(product.ProductName);
             }
+            Console.WriteLine("--------------------");
 
+            ProductManager productManager2 = new ProductManager(new EntityFrameworkProductDal());
+            foreach (var product in productManager2.GetAll())
+            {
+                Console.WriteLine(product.ProductName);
+            }
 
         }
         
