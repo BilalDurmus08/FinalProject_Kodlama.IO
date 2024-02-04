@@ -12,23 +12,16 @@ namespace ConsoleUI
 {
     internal class Program
     {
-        static void Main(string[] args) 
+        static void Main(string[] args)
         {
-            ProductManager productManager1 = new ProductManager(new InMemoryProductDal());
-            foreach(var product in productManager1.GetAll())
+            ProductManager productManager2 = new ProductManager(new EfProductDal());
+            foreach (var product in productManager2.GetAllByCategoryId(2))
             {
-                Console.WriteLine(product.ProductName);
-            }
-            Console.WriteLine("--------------------");
-
-            ProductManager productManager2 = new ProductManager(new EntityFrameworkProductDal());
-            foreach (var product in productManager2.GetAll())
-            {
-                Console.WriteLine(product.ProductName);
+                Console.WriteLine(product.ProductName + " " +product.UnitPrice);
             }
 
         }
-        
+
     }
 
 

@@ -3,36 +3,38 @@ using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
-{
-    public class EntityFrameworkProductDal : IProductDal
+{   //NuGet
+    public class EfCategoryDal : ICategoryDal
     {
-        public void Add(Product product)
+        public void Add(Category Entity)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(Product product)
+        public void Delete(Category Entity)
         {
             throw new NotImplementedException();
         }
 
-        public List<Product> GetAll()
-        {
-            return new List<Product>() { new Product { ProductName = "selpak", CategoryID = 1, ProductId = 5, UnitPrice = 34, UnitsInStock = 13223 } };
-        }
-
-        public List<Product> GetAllByCategory(int categoryId)
+        public Category Get(Expression<Func<Category, bool>> filter)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(Product product)
+        public List<Category> GetAll(Expression<Func<Category, bool>> filter = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(Category Entity)
         {
             throw new NotImplementedException();
         }
     }
+
 }

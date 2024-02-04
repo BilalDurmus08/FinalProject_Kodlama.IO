@@ -3,11 +3,13 @@ using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.InMemory
-{
+{       // We will not use this class. I quit to write code inside of this class. But for template this class should exist
+        //I use EntityFramework folder to use "NorthWind" database
     public class InMemoryProductDal : IProductDal
     {               //Convention naming
         List<Product> _products;
@@ -45,9 +47,19 @@ namespace DataAccess.Concrete.InMemory
             _products.Remove(deleteProduct);
         }
 
+        public Product Get(Expression<Func<Product, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Product> GetAll()
         {
             return _products;
+        }
+
+        public List<Product> GetAll(Expression<Func<Product, bool>> filter = null)
+        {
+            throw new NotImplementedException();
         }
 
         public List<Product> GetAllByCategory(int categoryId)

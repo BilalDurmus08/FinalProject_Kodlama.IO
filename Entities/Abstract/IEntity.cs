@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Entities.Abstract
 {
     //The class that implements I entity is a database table
-    internal interface IEntity
+    public interface IEntity
     {
     }
 }
