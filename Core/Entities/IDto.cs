@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.Abstract
+namespace Core.Entities
 {
-    //The class that implements I entity is a database table
-    public interface IEntity
+    public interface IDto
     {
+
     }
+
 }
