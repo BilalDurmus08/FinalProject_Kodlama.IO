@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Core.Utilites.Results.Abstract;
+using Core.Utilites.Results.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -18,11 +20,17 @@ namespace Business.Concrete
             _productDal = productDal;
         }
 
-        public void Add(Product product)
+        public IResult Add(Product product)
         {
             //Some business code blocks
             //Is he allows to use ? 
+            if(product.ProductName.Length < 2)
+            {
+                return new ErrorResult("An error was encountered while adding process"); 
+            }
+
             _productDal.Add(product);
+            return new SuccessResult("Added process Successful"); //we gave "true" as default. The message is choice
         }
 
         public List<Product> GetAll()
