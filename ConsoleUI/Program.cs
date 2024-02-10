@@ -19,17 +19,44 @@ namespace ConsoleUI
         {
             //ProductTest();
             //CategoryTest();
-            ProductDetailDtoTEST();
+            //ProductDetailDtoTEST();
+            ErrorDataResultTEST();
 
+        }
+
+        private static void ErrorDataResultTEST()
+        {
+            ProductManager productManager = new ProductManager(new EfProductDal());
+            var result = productManager.GetAll();
+            if (result.Success == true)
+            {
+                foreach (var entity in result.Data)
+                {
+                    Console.WriteLine("ProductName: " + entity.ProductName + " CategoryName: " + entity.UnitPrice);
+                }
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
         }
 
         private static void ProductDetailDtoTEST()
         {
             ProductManager productManager = new ProductManager(new EfProductDal());
-            foreach (ProductDetailDto p in productManager.GetProductDetails())
+            var result = productManager.GetProductDetailss();
+            if (result.Success == true)
             {
-                Console.WriteLine("ProductName: " + p.ProductName + " CategoryName: " + p.CategoryName);
+                foreach (ProductDetailDto detailDto in result.Data)
+                {
+                    Console.WriteLine("ProductName: " + detailDto.ProductName + " CategoryName: " + detailDto.CategoryName);
+                }
             }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+            
         }
 
         private static void CategoryTest()
@@ -44,7 +71,7 @@ namespace ConsoleUI
         private static void ProductTest()
         {
             ProductManager productManager2 = new ProductManager(new EfProductDal());
-            foreach (var product in productManager2.GetAllByCategoryId(2))
+            foreach (var product in productManager2.GetAllByCategoryId(2).Data)
             {
                 Console.WriteLine(product.ProductName + " " + product.UnitPrice);
             }
