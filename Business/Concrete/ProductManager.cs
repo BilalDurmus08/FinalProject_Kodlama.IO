@@ -1,10 +1,12 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
 using Core.Utilites.Results.Abstract;
 using Core.Utilites.Results.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,9 +27,12 @@ namespace Business.Concrete
         {
             //Some business code blocks
             //Is he allows to use ? 
-            if(product.ProductName.Length < 2)
+            var context = new ValidationContext<Product>(product);
+            ProductValidator productValidator = new ProductValidator();
+            var result = productValidator.Validate(context);
+            if (!result.IsValid)
             {
-                return new ErrorResult(Messages.ProductNameInvalid); 
+                throw new ValidationException(result.Errors);
             }
 
             _productDal.Add(product);
